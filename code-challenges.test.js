@@ -95,6 +95,43 @@ describe("findIt", () => {
 
 // b) Create the function that makes the test pass.
 
+/* Pseudo Code - findIt
+    Function Name: findIt
+    Parameters: 
+        - 2 parameters, 
+        - 1 array of words called wordsArray
+        - 1 string containing a single character
+    Logic:
+        - create new array to store found words
+        - iterate over each word in array
+        - if word in array includes the supplied letter
+        - return item to new array of filtered items 
+        - return new list of words that all contain the letter supplied
+*/
+
+const findIt = (wordsArray, letter) => {
+    const foundWords = []
+
+    for (let i = 0; i < wordsArray.length; i++) {
+        if (wordsArray[i].includes(letter) || wordsArray[i].includes(letter.toUpperCase())) {
+            foundWords.push(wordsArray[i])
+        }
+    }
+    return foundWords
+}
+
+/* Green Test Passed Successfully
+FAIL  ./code-challenges.test.js
+    h4x0rL4ng
+        √ Takes in a string and returns a coded message. (3 ms)                                                                                                                                 
+    findIt
+        √ Takes in an array of words and a single letter and returns all the words that contain that particular letter.
+    checkFullHand
+        × Takes in an array of 5 numbers and determines whether or not the array is a full house.  
+*/
+
+/* Refactor */
+
 /* ---------------------- Question Three ----------------------
 // 3) Create a function that takes in an array of 5 numbers and determines whether or not the array is a “full house”. A full house is exactly one pair and one three of a kind.
 */
@@ -127,3 +164,36 @@ describe("checkFullHand", () => {
 */
 
 // b) Create the function that makes the test pass.
+
+/* Pseudo Code - checkFullHand
+    Function Name: checkFullHand
+    Parameters: 1 array of numbers, called handArray
+    Logic:
+        - Iterate over array of numbers
+        - Count occurrence of each number and put it in an object with the count
+        - if there are 2 unique numbers and one doesn't equal a count of 1, return true
+        - If there are more than 2 unique numbers, return false
+*/
+
+const checkFullHand = handArray => {
+    const cardCount = {}
+    for (const card of handArray) {
+        cardCount[card] = cardCount[card] ? cardCount[card] + 1 : 1
+    }
+
+    if (Object.keys(cardCount).length === 2 && !Object.values(cardCount).includes(1)) {
+        return true
+    } else {
+        return false
+    }
+}
+
+/* Green Test Passed Successfully
+    PASS  ./code-challenges.test.js
+    h4x0rL4ng
+        √ Takes in a string and returns a coded message. (6 ms)                                                                                                                   
+    findIt
+        √ Takes in an array of words and a single letter and returns all the words that contain that particular letter.                                                           
+    checkFullHand
+        √ Takes in an array of 5 numbers and determines whether or not the array is a full house.
+*/
